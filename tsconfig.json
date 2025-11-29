@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "components/NewNoteButton.jsx", "components/NoteItem.jsx", "components/NoteList.jsx", "components/NoteModal.jsx", "app/notes/_layout.jsx", "app/notes/index.jsx", "app/_layout.jsx", "app/index.jsx", "services/appwrite.jsx", "services/databaseService.jsx", "services/noteService.jsx"  ]
 }

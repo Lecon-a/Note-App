@@ -1,54 +1,13 @@
-import { useState } from 'react';
 import {
     View, Text, StyleSheet,
-    FlatList, TouchableOpacity,
-    Modal, TextInput
+    TouchableOpacity,
+    Modal, TextInput, Alert
 } from 'react-native';
 
-const NoteScreen = () => {
 
-    const [notes, setNotes] = useState([
-        {id: '1', text: 'Note One'},
-        {id: '2', text: 'Note Two'},
-        {id: '3', text: 'Note Three'},
-    ])
-
-    const [modalVisible, setModalVisible] = useState(false);
-    const [newNote, setNewNote] = useState('');
-
-    const addNote = () => {
-        if (newNote.trim()) {
-            const newNoteItem = {
-                id: (notes.length + 1).toString(),
-                text: newNote,
-            };
-            setNotes([...notes, newNoteItem]);
-            setNewNote('');
-            setModalVisible(false);
-        }
-    };
-
+const NoteModal = ({addNote, newNote, setNewNote, modalVisible, setModalVisible}) => {
     return (
-        <View style={style.container}>
-            <FlatList
-                data={notes}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                    <View style={style.noteItem}>
-                        <Text style={style.noteText}>{item.text}</Text>
-                    </View>
-                )}
-
-            />
-            <TouchableOpacity
-                style={style.newNoteButton}
-                onPress={() => setModalVisible(true)}
-            >
-                <Text style={style.addButtonText}>+ Create New Note</Text>
-            </TouchableOpacity>
-
-            {/* model */}
-            <Modal
+        <Modal
                 animationType="slide"
                 transparent={true}
                 visible={modalVisible}
@@ -79,42 +38,10 @@ const NoteScreen = () => {
                     </View>
                 </View>
             </Modal>
-        </View>
     );
 }
 
 const style = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 20,
-        backgroundColor: '#fff',
-    },
-    noteItem: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        backgroundColor: '#f5f5f5',
-        padding: 15,
-        marginVertical: 5,
-        borderRadius: 5,
-    },
-    noteText: {
-        fontSize: 18,
-    },
-    newNoteButton: {
-        position: 'absolute',
-        bottom: 20,
-        left: 20,
-        right: 20,
-        backgroundColor: '#007bff',
-        padding: 15,
-        borderRadius: 8,
-        alignItems: 'center',
-    },
-    addButtonText: {
-        color: '#fff',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
     modalOverlay: {
         flex: 1,
         justifyContent: 'center',
@@ -170,7 +97,6 @@ const style = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
     },
-})
+});
 
-export default NoteScreen;
-
+export default NoteModal;
